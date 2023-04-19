@@ -1,0 +1,21 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ytmusic-scripts"
+authors = [
+    {name = "Willow Ciesialka", email="wciesialka@gmail.com"}
+]
+requires-python = ">=3.8"
+description = "Collection of scripts utilizing the YouTube Music API."
+dynamic = ["version", "readme", "dependencies"]
+
+[tool.setuptools.packages.find]
+where = ["src"]  # ["."] by default
+include = ["ytmusicscripts*"]  # ["*"] by default
+
+[tool.setuptools.dynamic]
+version = {attr = "ytmusicscripts.__version__"}
+readme = {file = ["README.md"]}
+dependencies = {file = ["requirements.txt"]}
