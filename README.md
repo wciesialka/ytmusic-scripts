@@ -19,6 +19,12 @@ or through installing this package.
 
 This package contains many modules.
 
+### duperemove
+
+Usage: `python -m ytmusicscripts.duperemove`
+
+Removes all duplicate tracks from your Liked Music playlist.
+
 ## Authors
 
 - Willow Ciesialka

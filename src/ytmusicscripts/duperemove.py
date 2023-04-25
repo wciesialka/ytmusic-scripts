@@ -4,7 +4,7 @@ This module is responsible for the duperemove feature.
 It will scan your "liked music" playlist and remove all duplicates.
 
 :author: Willow Ciesialka
-:date: 2023-04-19
+:date: 2023-04-25
 '''
 
 from ytmusicscripts import ytmusic
@@ -36,7 +36,7 @@ def _string_compare(str_1: str, str_2: str) -> float:
 
     matches = 0
     for i, char in enumerate(str_1):
-        if char == str_1[i]:
+        if char == str_2[i]:
             matches += 1
     return matches / max_length
 
@@ -103,13 +103,14 @@ def main():
     dupes: List[Tuple[str, str, str]] = _find_duplicates(tracks)
     print('\033[92mDONE!', end='\033[0m\n')
 
-    # Rate and remove from playlist
-    print("Unliking Duplicates...", end=' ', flush=True)
-    for dupe in dupes:
-        ytmusic.rate_song(dupe[2], rating='INDIFFERENT')
-    print('\033[92mDONE!', end='\033[0m\n')
-    print('\033[92mProcess Complete!',
-          '\033[0m(Changes may take a while to reflect)', end='\033[0m\n')
+    if input("Remove duplicates [Y/N]? ").casefold() == 'y':    
+        # Rate and remove from playlist
+        print("Unliking Duplicates...", end=' ', flush=True)
+        for dupe in dupes:
+            ytmusic.rate_song(dupe[2], rating='INDIFFERENT')
+        print('\033[92mDONE!', end='\033[0m\n')
+        print('\033[92mProcess Complete!',
+            '\033[0m(Changes may take a while to reflect)', end='\033[0m\n')
 
 
 if __name__ == "__main__":
